@@ -32,4 +32,23 @@ public class TarefaService {
         .map(tarefa -> ResponseEntity.ok().body(tarefa))
         .orElse(ResponseEntity.notFound().build());
     }
+
+    public ResponseEntity<Tarefa> atualizarTarefaPeloId(Tarefa tarefa, Long id) {
+        return tarefaRepository.findById(id)
+        .map(tarefaParaAtualizar -> {
+            tarefaParaAtualizar.setTitulo(tarefa.getTitulo());
+            tarefaParaAtualizar.setDescricao(tarefa.getDescricao());
+            tarefaParaAtualizar.setDataLimite(tarefa.getDataLimite());
+            Tarefa atualizada = tarefaRepository.save(tarefaParaAtualizar);
+            return ResponseEntity.ok().body(atualizada);
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
+    public ResponseEntity<Object> apagarPeloId(Long id) {
+        return tarefaRepository.findById(id)
+        .map(tarefaParaApagar -> {
+            tarefaRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }).orElse(ResponseEntity.notFound().build());
+    }
 }

@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -39,5 +41,17 @@ public class TarefaController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Tarefa> buscarTarefaPeloId(@PathVariable (value = "id") Long id) {
         return tarefaService.encontrarTarefaPeloId(id);
+    }
+
+    @PutMapping("/tarefas/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Tarefa> buscarTarefaPeloId(@PathVariable (value = "id") Long id, @RequestBody Tarefa tarefa) {
+        return tarefaService.atualizarTarefaPeloId(tarefa, id);
+    }
+
+    @DeleteMapping("/tarefas/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Object> apagarTarefaPeloId(@PathVariable (value = "id") Long id) {
+        return tarefaService.apagarPeloId(id);
     }
 }
