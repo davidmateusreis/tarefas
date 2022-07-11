@@ -2,20 +2,18 @@ package com.david.tarefas.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.david.tarefas.model.Tarefa;
 import com.david.tarefas.repository.TarefaRepository;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class TarefaService {
     
-    @Autowired
     private TarefaRepository tarefaRepository;
 
     public Tarefa criarTarefa(Tarefa tarefa) {

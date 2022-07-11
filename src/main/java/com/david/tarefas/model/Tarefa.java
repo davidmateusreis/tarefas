@@ -1,6 +1,6 @@
 package com.david.tarefas.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,13 +35,13 @@ public class Tarefa {
 
     @CreationTimestamp
     @Column(name = "criado_em", nullable = false, updatable = false)
-    private Date criadoEm;
+    private LocalDateTime criadoEm;
     
     @UpdateTimestamp
     @Column(name = "atualizado_em")
-    private Date atualizoEm;
+    private LocalDateTime atualizoEm;
 
     @Column(nullable = false)
-    private Date dataLimite;
+    private LocalDateTime dataLimite;
 
 }
